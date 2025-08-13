@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Gupta's Sweets</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="user.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="glass-morphism">
+        <div class="logo">
+            <h1>Gupta's Sweets</h1>
+            <div class="tagline">Since 1947</div>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Sweets</a>
+            <a href="index.html#about">Our Story</a>
+            <a href="index.html#gallery">Gallery</a>
+            <a href="index.html#contact">Order</a>
+            <div class="user-menu">
+                <span class="username">Welcome, User</span>
+                <button id="logout-btn">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- User Dashboard -->
+    <div class="user-container">
+        <!-- Sidebar -->
+        <div class="user-sidebar">
+            <div class="user-profile">
+                <div class="avatar">U</div>
+                <h3>John Doe</h3>
+                <p class="email">john.doe@email.com</p>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard">
+                            <span class="icon">🏠</span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#profile">
+                            <span class="icon">👤</span>
+                            Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#orders">
+                            <span class="icon">📦</span>
+                            My Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#wishlist">
+                            <span class="icon">❤️</span>
+                            Wishlist
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#settings">
+                            <span class="icon">⚙️</span>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="user-main">
+            <!-- Dashboard -->
+            <section id="dashboard" class="user-section active">
+                <h2>Dashboard</h2>
+                
+                <!-- User Stats -->
+                <div class="user-stats">
+                    <div class="stat-card">
+                        <h3>Total Orders</h3>
+                        <p class="stat-value">12</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Favorite Sweet</h3>
+                        <p class="stat-value">Gulab Jamun</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Rewards Points</h3>
+                        <p class="stat-value">245</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Last Order</h3>
+                        <p class="stat-value">2 weeks ago</p>
+                    </div>
+                </div>
+                
+                <!-- Recent Orders -->
+                <div class="recent-orders">
+                    <h3>Recent Orders</h3>
+                    <div class="orders-list">
+                        <div class="order-item">
+                            <div class="order-info">
+                                <p class="order-id">#ORD7821</p>
+                                <p class="order-date">June 15, 2023</p>
+                            </div>
+                            <div class="order-details">
+                                <p>1x Gulab Jamun, 1x Jalebi</p>
+                                <p class="order-amount">$24.98</p>
+                            </div>
+                            <div class="order-status delivered">Delivered</div>
+                        </div>
+                        
+                        <div class="order-item">
+                            <div class="order-info">
+                                <p class="order-id">#ORD7563</p>
+                                <p class="order-date">May 28, 2023</p>
+                            </div>
+                            <div class="order-details">
+                                <p>2x Rasgulla, 1x Barfi</p>
+                                <p class="order-amount">$46.97</p>
+                            </div>
+                            <div class="order-status delivered">Delivered</div>
+                        </div>
+                        
+                        <div class="order-item">
+                            <div class="order-info">
+                                <p class="order-id">#ORD7321</p>
+                                <p class="order-date">April 12, 2023</p>
+                            </div>
+                            <div class="order-details">
+                                <p>Custom Sweet Box</p>
+                                <p class="order-amount">$89.50</p>
+                            </div>
+                            <div class="order-status delivered">Delivered</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommendations -->
+                <div class="recommendations">
+                    <h3>Recommended for You</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gulab Jamun">
+                            <h4>Gulab Jamun</h4>
+                            <p>Soft dough balls in rose syrup</p>
+                            <div class="price">$12.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652b6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Rasgulla">
+                            <h4>Rasgulla</h4>
+                            <p>Light cheese balls in syrup</p>
+                            <div class="price">$14.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                        
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1600339659969-843567e19d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Jalebi">
+                            <h4>Jalebi</h4>
+                            <p>Crispy swirls in saffron syrup</p>
+                            <div class="price">$11.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Profile Section -->
+            <section id="profile" class="user-section">
+                <h2>Profile Information</h2>
+                
+                <form class="profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" value="John">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" value="Doe">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" value="john.doe@email.com" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" value="+1 555-123-4567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea rows="3">123 Saffron Street, Delhi, India</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" value="1990-05-15">
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </form>
+            </section>
+            
+            <!-- Orders Section -->
+            <section id="orders" class="user-section">
+                <h2>My Orders</h2>
+                
+                <div class="orders-filters">
+                    <button class="filter-btn active">All Orders</button>
+                    <button class="filter-btn">Delivered</button>
+                    <button class="filter-btn">Processing</button>
+                    <button class="filter-btn">Cancelled</button>
+                </div>
+                
+                <div class="orders-list full">
+                    <div class="order-item">
+                        <div class="order-header">
+                            <span class="order-id">#ORD7821</span>
+                            <span class="order-date">June 15, 2023</span>
+                            <span class="order-status delivered">Delivered</span>
+                        </div>
+                        <div class="order-items">
+                            <div class="item">
+                                <span class="item-name">Gulab Jamun</span>
+                                <span class="item-quantity">x1</span>
+                                <span class="item-price">$12.99</span>
+                            </div>
+                            <div class="item">
+                                <span class="item-name">Jalebi</span>
+                                <span class="item-quantity">x1</span>
+                                <span class="item-price">$11.99</span>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <span class="order-total">Total: $24.98</span>
+                            <div class="order-actions">
+                                <button class="btn-secondary">Track Order</button>
+                                <button class="btn-secondary">Reorder</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-item">
+                        <div class="order-header">
+                            <span class="order-id">#ORD7563</span>
+                            <span class="order-date">May 28, 2023</span>
+                            <span class="order-status delivered">Delivered</span>
+                        </div>
+                        <div class="order-items">
+                            <div class="item">
+                                <span class="item-name">Rasgulla</span>
+                                <span class="item-quantity">x2</span>
+                                <span class="item-price">$29.98</span>
+                            </div>
+                            <div class="item">
+                                <span class="item-name">Milk Barfi</span>
+                                <span class="item-quantity">x1</span>
+                                <span class="item-price">$16.99</span>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <span class="order-total">Total: $46.97</span>
+                            <div class="order-actions">
+                                <button class="btn-secondary">Track Order</button>
+                                <button class="btn-secondary">Reorder</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-item">
+                        <div class="order-header">
+                            <span class="order-id">#ORD7321</span>
+                            <span class="order-date">April 12, 2023</span>
+                            <span class="order-status delivered">Delivered</span>
+                        </div>
+                        <div class="order-items">
+                            <div class="item">
+                                <span class="item-name">Custom Sweet Box</span>
+                                <span class="item-quantity">x1</span>
+                                <span class="item-price">$89.50</span>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <span class="order-total">Total: $89.50</span>
+                            <div class="order-actions">
+                                <button class="btn-secondary">Track Order</button>
+                                <button class="btn-secondary">Reorder</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section

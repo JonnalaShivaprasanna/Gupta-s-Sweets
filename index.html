@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gupta's Sweets - Premium Indian Sweets</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="logo">Gupta's Sweets</div>
+            <div class="spinner"></div>
+            <p>Loading delicious experiences...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-morphism">
+        <div class="logo">
+            <h1>Gupta's Sweets</h1>
+            <div class="tagline">Since 1947</div>
+        </div>
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#products">Sweets</a>
+            <a href="#about">Our Story</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Order</a>
+            <div class="cart-icon">🛒 <span class="badge">0</span></div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section with 3D Canvas -->
+        <section id="home" class="hero">
+            <div id="canvas-container"></div>
+            <div class="hero-content">
+                <h1>Handcrafted <span>Perfection</span></h1>
+                <p>Since 1947, bringing joy one sweet at a time with our authentic Indian recipes</p>
+                <div class="cta-buttons">
+                    <button class="btn-primary">Explore Collection</button>
+                    <button class="btn-secondary">Custom Order</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products-section">
+            <div class="section-header">
+                <h2>Our Signature Sweets</h2>
+                <p>Handcrafted with love and traditional recipes passed down for generations</p>
+            </div>
+            
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">All Sweets</button>
+                <button class="filter-btn" data-filter="classic">Classic</button>
+                <button class="filter-btn" data-filter="premium">Premium</button>
+                <button class="filter-btn" data-filter="seasonal">Seasonal</button>
+            </div>
+            
+            <div class="products-container">
+                <div class="product-card" data-category="classic">
+                    <div class="product-3d" id="gulab-jamun"></div>
+                    <h3>Gulab Jamun</h3>
+                    <p>Soft dough balls soaked in rose-scented sugar syrup</p>
+                    <div class="price">$12.99</div>
+                    <button class="add-to-cart">Add to Box</button>
+                </div>
+                
+                <div class="product-card" data-category="premium">
+                    <div class="product-3d" id="rasgulla"></div>
+                    <h3>Rasgulla</h3>
+                    <p>Light cheese balls in light sugar syrup</p>
+                    <div class="price">$14.99</div>
+                    <button class="add-to-cart">Add to Box</button>
+                </div>
+                
+                <div class="product-card" data-category="classic">
+                    <div class="product-3d" id="jalebi"></div>
+                    <h3>Jalebi</h3>
+                    <p>Crispy swirls soaked in saffron syrup</p>
+                    <div class="price">$11.99</div>
+                    <button class="add-to-cart">Add to Box</button>
+                </div>
+                
+                <div class="product-card" data-category="premium">
+                    <div class="product-3d" id="barfi"></div>
+                    <h3>Milk Barfi</h3>
+                    <p>Dense milk fudge with pistachio garnish</p>
+                    <div class="price">$16.99</div>
+                    <button class="add-to-cart">Add to Box</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Gupta's Sweets Heritage">
+                </div>
+                <div class="about-content">
+                    <h2>Our Sweet Heritage</h2>
+                    <p>Founded in 1947 by Master Sweetsmith Ram Gupta, our family has been perfecting the art of Indian confectionery for over seven decades.</p>
+                    <p>Every sweet is crafted using traditional methods with premium ingredients, ensuring authentic flavors that transport you to the bustling markets of Old Delhi.</p>
+                    <div class="heritage-stats">
+                        <div class="stat">
+                            <span class="number">75+</span>
+                            <span class="label">Years of Excellence</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">50+</span>
+                            <span class="label">Awards Won</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">100K+</span>
+                            <span class="label">Happy Customers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Order Section -->
+        <section id="contact" class="order-section">
+            <div class="order-container">
+                <h2>Custom Sweet Box</h2>
+                <p>Design your perfect assortment of sweets for any occasion</p>
+                
+                <div class="box-builder">
+                    <div class="box-preview">
+                        <div class="box-3d" id="custom-box"></div>
+                        <p>Drag sweets here to build your custom box</p>
+                    </div>
+                    
+                    <div class="order-form">
+                        <div class="form-group">
+                            <label for="box-size">Box Size</label>
+                            <select id="box-size">
+                                <option value="small">Small (6 pieces)</option>
+                                <option value="medium" selected>Medium (12 pieces)</option>
+                                <option value="large">Large (24 pieces)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Selected Sweets (0)</label>
+                            <div class="selected-items" id="selected-items">
+                                <!-- Items will be added here -->
+                            </div>
+                        </div>
+                        
+                        <div class="total">
+                            <span>Total:</span>
+                            <span id="total-price">$0.00</span>
+                        </div>
+                        
+                        <button class="btn-primary btn-large">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Gupta's Sweets</h3>
+                <p>Purveyors of fine Indian confections since 1947</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4>Shop</h4>
+                    <a href="#">All Sweets</a>
+                    <a href="#">Gift Boxes</a>
+                    <a href="#">Seasonal Specials</a>
+                </div>
+                
+                <div class="link-column">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Our Story</a>
+                    <a href="#">Careers</a>
+                </div>
+                
+                <div class="link-column">
+                    <h4>Support</h4>
+                    <a href="#">Contact</a>
+                    <a href="#">FAQs</a>
+                    <a href="#">Shipping</a>
+                </div>
+            </div>
+            
+            <div class="footer-contact">
+                <p><strong>Visit Us:</strong> 1-92 manikonda, hyderabad, pochamma colony</p>
+                <p><strong>Call:</strong> +91 9440855551</p>
+                <p><strong>Email:</strong> info@guptassweets.com</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Gupta's Sweets. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email - Gupta's Sweets</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <!-- Background 3D Animation -->
+    <div id="login-background"></div>
+    
+    <div class="login-container">
+        <div class="login-logo">
+            <h1>Gupta's Sweets</h1>
+            <p>Verify your email to complete registration</p>
+        </div>
+        
+        <div class="login-form active">
+            <h2>Email Verification</h2>
+            <p>We've sent a 6-digit code to your email. Please enter it below to verify your account.</p>
+            
+            <form id="verify-form">
+                <div class="form-group">
+                    <label for="verify-email">Email Address</label>
+                    <input type="email" id="verify-email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="verification-code">Verification Code</label>
+                    <input type="text" id="verification-code" maxlength="6" required>
+                    <div class="code-hint">Enter the 6-digit code sent to your email</div>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-large">Verify Email</button>
+                
+                <div class="resend-container">
+                    <p>Didn't receive the code? <a href="#" id="resend-otp">Resend code</a></p>
+                </div>
+                
+                <div class="back-link">
+                    <a href="register.html">Back to registration</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="verify-email.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Gupta's Sweets</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <div class="admin-logo">
+            <h2>Gupta's Sweets</h2>
+            <p>Admin Panel</p>
+        </div>
+        
+        <nav>
+            <ul>
+                <li class="active">
+                    <a href="#dashboard">
+                        <span class="icon">📊</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#products">
+                        <span class="icon">🍬</span>
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a href="#orders">
+                        <span class="icon">📦</span>
+                        Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#customers">
+                        <span class="icon">👥</span>
+                        Customers
+                    </a>
+                </li>
+                <li>
+                    <a href="#analytics">
+                        <span class="icon">📈</span>
+                        Analytics
+                    </a>
+                </li>
+                <li>
+                    <a href="#settings">
+                        <span class="icon">⚙️</span>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="admin-logout">
+            <button id="logout-btn">Logout</button>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="admin-main">
+        <!-- Header -->
+        <header class="admin-header">
+            <h1>Dashboard</h1>
+            <div class="admin-user">
+                <span>Welcome, Admin</span>
+                <div class="user-avatar">A</div>
+            </div>
+        </header>
+        
+        <!-- Dashboard Content -->
+        <div class="admin-content">
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Revenue</h3>
+                        <p class="stat-value">$24,589</p>
+                        <p class="stat-change">+12.5% from last month</p>
+                    </div>
+                    <div class="stat-icon revenue">💰</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Orders</h3>
+                        <p class="stat-value">156</p>
+                        <p class="stat-change">+8.2% from last month</p>
+                    </div>
+                    <div class="stat-icon orders">📦</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>New Customers</h3>
+                        <p class="stat-value">42</p>
+                        <p class="stat-change">+15.7% from last month</p>
+                    </div>
+                    <div class="stat-icon customers">👥</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Pending Orders</h3>
+                        <p class="stat-value">8</p>
+                        <p class="stat-change">-3.1% from yesterday</p>
+                    </div>
+                    <div class="stat-icon pending">⏳</div>
+                </div>
+            </div>
+            
+            <!-- Charts and Data -->
+            <div class="data-grid">
+                <!-- Sales Chart -->
+                <div class="chart-card">
+                    <h3>Monthly Sales</h3>
+                    <div id="sales-chart">
+                        <canvas id="salesCanvas"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Recent Orders -->
+                <div class="orders-card">
+                    <h3>Recent Orders</h3>
+                    <div class="orders-list">
+                        <div class="order-item">
+                            <div class="order-info">
+                                <p class="order-id">#ORD7821</p>
+                                <p class="order-date">Today, 10:30 AM</p>
+                            </div>
+                            <div class="order-customer">Rajesh Kumar</div>
+                            <div class="order-amount">$89.99</div>
+                            <div class="order-status pending">Pending</div>
+                        </div>
+                        
+                        <div class="order-item">
+                            <div class="order-info">
+                                <p class="order-id">#ORD7820</p>
+                                <p class="order-date">Today, 9:15 AM</p>
+                            </div>
+                            <div class="order-customer">Priya Sharma</div>
+                            <div class="order-amount">$124.50</div>
+                            <div class="order-status processing">Processing</div>
+                        </div>
+                        
+                        <div class="order-item">
+                            <div class="order-info">
+                                <p class="order-id">#ORD7819</p>
+                                <p class="order-date">Yesterday, 4:20 PM</p>
+                            </div>
+                            <div class="order-customer">Amit Patel</div>
+                            <div class="order-amount">$67.80</div>
+                            <div class="order-status shipped">Shipped</div>
+                        </div>
+                        
+                        <div class="order-item">
+                            <div class="order-info">
+                                <p class="order-id">#ORD7818</p>
+                                <p class="order-date">Yesterday, 2:45 PM</p>
+                            </div>
+                            <div class="order-customer">Sneha Reddy</div>
+                            <div class="order-amount">$156.25</div>
+                            <div class="order-status delivered">Delivered</div>
+                        </div>
+                    </div>
+                    <button class="btn-secondary view-all">View All Orders</button>
+                </div>
+            </div>
+            
+            <!-- Product Management -->
+            <div class="products-section">
+                <div class="section-header">
+                    <h3>Product Management</h3>
+                    <button class="btn-primary">Add New Product</button>
+                </div>
+                
+                <div class="products-grid">
+                    <div class="product-item">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1559526324-593bc073d938?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="product-info">
+                            <h4>Gulab Jamun</h4>
+                            <p class="product-category">Classic</p>
+                            <p class="product-price">$12.99</p>
+                        </div>
+                        <div class="product-actions">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1606312619070-d48b4c652b6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="product-info">
+                            <h4>Rasgulla</h4>
+                            <p class="product-category">Classic</p>
+                            <p class="product-price">$14.99</p>
+                        </div>
+                        <div class="product-actions">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600339659969-843567e19d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="product-info">
+                            <h4>Jalebi</h4>
+                            <p class="product-category">Classic</p>
+                            <p class="product-price">$11.99</p>
+                        </div>
+                        <div class="product-actions">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1543314447-271850906179?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="product-info">
+                            <h4>Milk Barfi</h4>
+                            <p class="product-category">Premium</p>
+                            <p class="product-price">$16.99</p>
+                        </div>
+                        <div class="product-actions">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
