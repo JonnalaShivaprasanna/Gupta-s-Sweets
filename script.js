@@ -1,5 +1,8 @@
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is logged in
+    checkAuthStatus();
+    
     // Loading screen
     const loadingScreen = document.getElementById('loading-screen');
     window.addEventListener('load', () => {
@@ -40,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Product filter functionality
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const productCardsAll = document.querySelectorAll('.product-card'); // Renamed from productCards
+    const productCards = document.querySelectorAll('.product-card');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const filter = button.getAttribute('data-filter');
             
             // Filter products
-            productCardsAll.forEach(card => {
+            productCards.forEach(card => {
                 if (filter === 'all' || card.getAttribute('data-category') === filter) {
                     card.classList.remove('hidden');
                 } else {
@@ -68,28 +71,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalPrice = document.getElementById('total-price');
     const selectedItems = document.getElementById('selected-items');
     
+    // Load cart from session or API
+    loadCart();
+    
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
+            const productId = getProductFromElement(productCard);
             const productName = productCard.querySelector('h3').textContent;
             const productPrice = parseFloat(productCard.querySelector('.price').textContent.replace('$', ''));
             
-            // Add to cart count
-            cartCount++;
-            cartBadge.textContent = cartCount;
-            
-            // Add to total
-            cartTotal += productPrice;
-            totalPrice.textContent = `$${cartTotal.toFixed(2)}`;
-            
-            // Add to selected items
-            const itemElement = document.createElement('div');
-            itemElement.className = 'selected-item';
-            itemElement.innerHTML = `
-                <div>${productName}</div>
-                <div>$${productPrice.toFixed(2)}</div>
-            `;
-            selectedItems.appendChild(itemElement);
+            // Add to cart via API
+            addToCart({
+                id: productId,
+                name: productName,
+                price: productPrice,
+                quantity: 1
+            });
             
             // Animation feedback
             this.textContent = 'Added!';
@@ -101,6 +99,138 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1000);
         });
     });
+
+    // Order form functionality
+    document.querySelector('.btn-large').addEventListener('click', placeOrder);
+
+    // Check authentication status
+    async function checkAuthStatus() {
+        // In a real app, you might make an API call to verify session
+        // For now, we'll rely on the server-side redirect
+        // This function can be expanded to check session status
+    }
+
+    // Load cart from API
+    async function loadCart() {
+        try {
+            const response = await fetch('/api/cart');
+            const data = await response.json();
+            
+            cartCount = data.count;
+            cartTotal = data.total;
+            cartBadge.textContent = cartCount;
+            
+            // Update UI
+            updateCartUI(data.items);
+        } catch (error) {
+            console.error('Error loading cart:', error);
+        }
+    }
+
+    // Add item to cart
+    async function addToCart(item) {
+        try {
+            const response = await fetch('/api/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'add',
+                    item: item
+                })
+            });
+            
+            const data = await response.json();
+            
+            // Update local variables
+            cartCount = data.count;
+            cartTotal = data.total;
+            
+            // Update UI
+            cartBadge.textContent = cartCount;
+            updateCartUI(data.items);
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+        }
+    }
+
+    // Update cart UI
+    function updateCartUI(items) {
+        // Clear current items
+        selectedItems.innerHTML = '';
+        
+        // Add items
+        items.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'selected-item';
+            itemElement.innerHTML = `
+                <div>${item.name} × ${item.quantity}</div>
+                <div>$${(item.price * item.quantity).toFixed(2)}</div>
+            `;
+            selectedItems.appendChild(itemElement);
+        });
+        
+        // Update total
+        totalPrice.textContent = `$${cartTotal.toFixed(2)}`;
+    }
+
+    // Place order
+    async function placeOrder() {
+        // Get cart items
+        try {
+            const cartResponse = await fetch('/api/cart');
+            const cartData = await cartResponse.json();
+            
+            if (cartData.count === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // Get shipping address (in a real app, this would come from user profile)
+            const address = "123 Saffron Street, Delhi"; // This would be from user profile
+            
+            // Place order via API
+            const response = await fetch('/api/order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    items: cartData.items,
+                    total: cartData.total,
+                    address: address
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                alert(`Order placed successfully! Order #${data.order_id}`);
+                // Clear cart
+                selectedItems.innerHTML = '';
+                totalPrice.textContent = '$0.00';
+                cartBadge.textContent = '0';
+            } else {
+                alert('Error placing order. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error placing order:', error);
+            alert('Error placing order. Please try again.');
+        }
+    }
+
+    // Helper function to get product ID from element
+    function getProductFromElement(element) {
+        const productName = element.querySelector('h3').textContent;
+        const products = {
+            'Gulab Jamun': 1,
+            'Rasgulla': 2,
+            'Jalebi': 3,
+            'Milk Barfi': 4
+        };
+        return products[productName] || 1;
+    }
 
     // 3D Product Display with Three.js
     function create3DProduct(containerId, color, shape) {
@@ -417,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(createCustomBoxScene, 1500);
     
     // Drag and drop for custom box (simplified)
-    const productCardsDrag = document.querySelectorAll('.product-card'); // Renamed from productCards
+    const productCardsDrag = document.querySelectorAll('.product-card');
     const boxPreview = document.querySelector('.box-preview');
     
     productCardsDrag.forEach(card => {
